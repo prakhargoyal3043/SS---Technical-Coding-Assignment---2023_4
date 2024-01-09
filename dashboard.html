@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Company Dashboard</title>
+
+    <!-- Add Chart.js library -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .dashboard {
+            text-align: center;
+            padding: 20px;
+        }
+
+        .box-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-gap: 20px;
+            justify-content: center;
+        }
+
+        .chart-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            grid-gap: 20px;
+            justify-content: center;
+        }
+
+        .dashboard-item {
+            border: 1px solid #ccc;
+            padding: 20px;
+            text-align: left;
+            position: relative;
+        }
+
+        .green-line {
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 10px;
+            background-color: #4CAF50; /* Green color */
+        }
+
+        .chart-container {
+            width: 100%;
+            max-width: 400px; /* Adjust the maximum width as needed */
+            height: 300px;
+            margin: auto; /* Center the chart container */
+        }
+    </style>
+</head>
+<body>
+    <div class="dashboard">
+        <h1>Company Metrics</h1>
+
+        <!-- Box Grid: First four boxes -->
+        <div class="box-grid">
+            <div class="dashboard-item">
+                <div class="green-line"></div>
+                <p>$406,411.29<br>Total Revenue</p>
+            </div>
+            <div class="dashboard-item">
+                <div class="green-line"></div>
+                <p>$620<br>Total Jobs Avg</p>
+            </div>
+            <div class="dashboard-item">
+                <div class="green-line"></div>
+                <p>$655<br>Tickets Created</p>
+            </div>
+            <div class="dashboard-item">
+                <div class="green-line"></div>
+                <p>$735<br>Tickets Scheduled</p>
+            </div>
+        </div>
+
+        <!-- Box Grid: Second four boxes -->
+        <div class="box-grid">
+            <div class="dashboard-item">
+                <div class="green-line"></div>
+                <p>$110,448.8<br>Outstanding Amount</p>
+            </div>
+            <div class="dashboard-item">
+                <div class="green-line"></div>
+                <p>105<br>Memberships Sold</p>
+            </div>
+            <div class="dashboard-item">
+                <div class="green-line"></div>
+                <p>436<br>Jobs Completed</p>
+            </div>
+            <div class="dashboard-item">
+                <div class="green-line"></div>
+                <p>65<br>Total Cancelled</p>
+            </div>
+        </div>
+
+        <!-- Chart Grid: Two charts below the boxes -->
+        <div class="chart-grid">
+            <div class="dashboard-item">
+                <h2>Revenue by Job Location</h2>
+                <canvas id="locationChart" class="chart-container"></canvas>
+            </div>
+            <div class="dashboard-item">
+                <h2>Revenue by Job Type</h2>
+                <canvas id="jobTypeChart" class="chart-container"></canvas>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Chart.js code for the first chart (Revenue by Job Location)
+        var locationData = {
+            labels: ['Edmonds', 'Mukilteo', 'Bothell', 'Lynnwood', 'Seattle', 'Everett'],
+            datasets: [{
+                label: 'Revenue for November 2019',
+                data: [34000, 43500, 45000, 49000, 86000, 95000],
+                backgroundColor: 'rgba(75, 192, 192, 0.5)', // Green color
+                borderWidth: 1
+            }]
+        };
+
+        var locationConfig = {
+            type: 'bar',
+            data: locationData,
+            options: {
+                scales: {
+                    x: {
+                        title: {
+                            display: true,
+                            text: 'Revenue for November 2019'
+                        },
+                        ticks: {
+                            stepSize: 5000
+                        }
+                    },
+                    y: {
+                        title: {
+                            display: true,
+                            text: 'Locations with Revenues'
+                        }
+                    }
+                }
+            }
+        };
+
+        var locationChart = new Chart(document.getElementById('locationChart'), locationConfig);
+
+        // Chart.js code for the second chart (Revenue by Job Type)
+        var jobTypeData = {
+            labels: ['Material Sale', 'Maintanance', 'HWT Replacement', 'Bid Work Plumbing', 'Service HVAC', 'Bid Work HVAC', 'Service Plumbing'],
+            datasets: [{
+                label: 'Revenue for November 2019',
+                data: [2500, 42000, 43000, 78000, 79000, 120000, 172000],
+                backgroundColor: 'rgba(75, 192, 192, 0.5)', // Green color
+                borderWidth: 1
+            }]
+        };
+
+        var jobTypeConfig = {
+            type: 'bar',
+            data: jobTypeData,
+            options: {
+                scales: {
+                    x: {
+                        title: {
+                            display: true,
+                            text: 'Revenue for November 2019'
+                        },
+                        ticks: {
+                            stepSize: 20000
+                        }
+                    },
+                    y: {
+                        title: {
+                            display: true,
+                            text: 'Job Type with Revenue'
+                        }
+                    }
+                }
+            }
+        };
+
+        var jobTypeChart = new Chart(document.getElementById('jobTypeChart'), jobTypeConfig);
+    </script>
+</body>
+</html>

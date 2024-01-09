@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Dashboard</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #1E1E1E;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        .login-container {
+            background-color: black;
+            padding: 62.5px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 350px;
+            text-align: center;
+            box-sizing: border-box;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #4caf50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        h2 {
+            color: #333;
+        }
+
+        .forgot-password {
+            font-size: 12px;
+            margin-top: 10px;
+            text-decoration: none;
+            color: grey;
+            display: block;
+        }
+
+        .logo {
+            align-self: center;
+            width: 250px;
+            height: 125px;
+            margin-bottom: 20px;
+            padding: 0 0 0 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <img src="Screenshot_2024-01-09_225013-removebg-preview.png" alt="Logo" class="logo">
+        <form id="loginForm">
+            <input type="text" id="username" placeholder="Username" required>
+            <br>
+            <input type="password" id="password" placeholder="Password" required>
+            <br>
+            <button type="button" onclick="validateLogin()">Login</button>
+            <a href="mailto:support@smartserv.io" class="forgot-password"><u>Forgot your password?</u></a>
+        </form>
+    </div>
+
+    <script>
+        function validateLogin() {
+            var username = document.getElementById('username').value;
+            var password = document.getElementById('password').value;
+
+            // Email validation
+            var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(username)) {
+                alert('Invalid email format');
+                return;
+            }
+
+            // Password validation
+            var passwordRegex = /^(?=.*[A-Z])(?=.*\d)(?!.*[^A-Za-z0-9@]).{6,}$/;
+            if (!passwordRegex.test(password)) {
+                alert('Invalid password format. It must contain an uppercase letter, a number, and only allow @ as a special character.');
+                return;
+            }
+
+            if (password === 'SmartServTest@123') {
+                // Redirect to the dashboard page
+                window.location.href = 'dashboard.html';
+            } else {
+                // If validation passes, you can proceed with login logic here
+                alert('Login successful!');
+            }
+        }
+    </script>
+</body>
+</html>
